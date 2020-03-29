@@ -1,6 +1,8 @@
 # Viber_message_extractor
 Viber no longer provides an option to download your chat message history. It uses sqlite3 database to save all it's data so you just need to locate the database file and the script does the rest for you.
 
+The script creates a CSV file for each chat you have in the following format: date, sender_name, message_text.
+
 ### dependencies:
 python3 and sqlite3 need to be installed
 
