@@ -2,6 +2,7 @@ import os
 import sqlite3
 import csv
 import argparse
+import datetime
 
 
 # if chat name exists, use it, if not, join all contact names in the chat
@@ -22,16 +23,17 @@ def get_chat_file_name(conn, chat_id, chat_name):
 
 
 # returns list of messages where each message
-# is a following tuple: (timestamp, name_of_sender, message_text)
+# is a following tuple: (date, name_of_sender, message_text)
 def get_chat_messages(conn, chat_id):
     result = conn.execute(
- """SELECT datetime(TimeStamp/1000+3600, 'unixepoch'), (SELECT Contact.name FROM (Events JOIN Contact USING (ContactID)) N WHERE M.ContactID = N.ContactID), Body\
+ """SELECT TimeStamp, (SELECT Contact.name FROM (Events JOIN Contact USING (ContactID)) N WHERE M.ContactID = N.ContactID), Body\
     FROM (Messages join Events USING (EventID)) M\
     WHERE ChatID = ? AND Messages.Type = 1\
     ORDER BY TimeStamp;""", (chat_id,))
     messages = []
     for row in result:
-        messages.append(row)
+        date = datetime.datetime.fromtimestamp(int(row[0])//1000)
+        messages.append((date, row[1], row[2]))
     return messages
 
 
