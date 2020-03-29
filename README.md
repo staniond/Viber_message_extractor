@@ -11,7 +11,7 @@ python3 and sqlite3 need to be installed
 
 ##### database_file   
 A path to a database file used by Viber. On Linux located in : ~/.ViberPC/[your_phone_number]/viber.db
-##### hats_directory
+##### chats_directory
 Path to a directory where chat history files will be saved. If the directory does not exist, it wil be created automatically.
 
 #### optional arguments:
