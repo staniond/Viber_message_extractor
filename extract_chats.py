@@ -6,13 +6,13 @@ import argparse
 
 # if chat name exists, use it, if not, join all contact names in the chat
 def get_chat_file_name(conn, chat_id, chat_name):
-    if(chat_name):
+    if chat_name:
         return chat_name + ".csv"
 
     chat_name = ""
     result = conn.execute("SELECT Contact.name FROM Contact JOIN ChatRelation USING (ContactID) WHERE ChatID = ?;", (chat_id,))
     for row in result:
-        if(row[0] is not None):
+        if row[0] is not None:
             chat_name += row[0]
         else:
             chat_name += "None"
