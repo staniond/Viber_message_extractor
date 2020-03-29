@@ -40,7 +40,7 @@ def print_chat_to_file(conn, chat_id, chat_name, chats_directory):
     file_name = get_chat_file_name(conn, chat_id, chat_name)
     messages = get_chat_messages(conn, chat_id)
 
-    with open(chats_directory + file_name, "w", newline="") as file:
+    with open(chats_directory + file_name, "w", newline="", encoding="utf-8") as file:
         csvwriter = csv.writer(file)
         for message in messages:
             csvwriter.writerow(message)
