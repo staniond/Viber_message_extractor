@@ -64,7 +64,8 @@ def get_chat_infos(conn):
 def get_arguments():
     parser = argparse.ArgumentParser(description="Extracts chat messages from Viber")
     parser.add_argument("database_file", help="A path to a database file used by Viber. \
-                        On Linux located in : ~/.ViberPC/[your_phone_number]/viber.db")
+                        On Linux located in : ~/.ViberPC/[your_phone_number]/viber.db\
+                        On windows located in: C:\\Users\\[your_windows_username]\\AppData\\Roaming\\ViberPC\\[your_phone_number]\\viber.db")
     parser.add_argument("chats_directory", default="chats", nargs='?', help="Path to a directory where chat \
                         history files will be saved. If the directory does not exist, it wil be created automatically.")
     return parser.parse_args()
