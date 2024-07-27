@@ -19,6 +19,10 @@ def get_chat_file_name(conn, chat_id, chat_name):
             chat_name += "None"
         chat_name += "-"
     chat_name = chat_name[:-1].replace(" ", "_")  # strip last '-' and replace spaces
+
+    # replace all non alphanumeric characters with '_' (to obtain a valid filename)
+    chat_name = ''.join(e if e.isalnum() else '_' for e in chat_name)
+
     return chat_name + ".csv"
 
 
